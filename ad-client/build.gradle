@@ -1,0 +1,67 @@
+// If your module is a library project, this is needed
+//to properly recognize 'android-library' plugin
+buildscript {
+    repositories {
+//mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.3.0'
+    }
+}
+
+apply plugin: 'com.android.application'
+
+//apply plugin: 'android-library'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion = 22
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+        }
+        formal{
+            java.srcDirs = ['packageConfig/formal/src']
+            res.srcDirs = ['packageConfig/formal/res']
+        }
+        develop{
+            java.srcDirs = ['packageConfig/develop/src']
+            res.srcDirs = ['packageConfig/develop/res']
+        }
+    }
+
+    productFlavors {
+
+        // if package library , please close applicationId
+        develop {
+            applicationId = 'com.xtone.ad.develop'
+        }
+        formal {
+            applicationId = 'com.xtone.ad'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+// NO use yet . get output file
+task clearJar(type: Delete) {
+    delete 'build/libs/myCompiledLibrary.jar'
+}
+
+task makeJar(type: Copy) {
+    from('build/bundles/release/')
+    into('build/libs/')
+    include('classes.jar')
+    rename ('classes.jar', 'myCompiledLibrary.jar')
+}
