@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">测试万家移动广告</string>
+    <string name="xingyun_name">行云广告平台</string>
+    <string name="scoreWall">积分墙</string>
+    <string name="hotWall">推荐墙</string>
+    <string name="preloading">加载插屏数据</string>
+    <string name="guframe">显示插屏</string>
+    <string name="getscore">查询积分</string>
+    <string name="consumescore">消费积分(10)</string>
+    <string name="sdk_version">SDK版本：V2.1.0</string>
+</resources>
