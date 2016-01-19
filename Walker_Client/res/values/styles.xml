@@ -1,0 +1,7 @@
+<resources>
+
+<style name="main_menu_animstyle">  
+       <item name="android:windowEnterAnimation">@anim/myanim_in</item>  
+   </style> 
+
+</resources>
