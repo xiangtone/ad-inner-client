@@ -720,7 +720,7 @@ public class AdFrameModel {
 
 		// 添加其他统计
 
-		String service = "http://192.168.1.116:8080/Walker_Client_Count/AdCountServlet?";
+		String service = "http://192.168.1.145:8080/Walker_Client_Count/AdCountServlet?";
 		String accountUrl = service + "date=" + date + "&AdClickWeb="
 				+ AdClickWeb + "&AdShow=" + AdShow + "&ClickToUrl="
 				+ ClickToUrl+"&uid="+uid+"&isAdShow="+isAdShow;
