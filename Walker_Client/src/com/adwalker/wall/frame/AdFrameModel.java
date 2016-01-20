@@ -57,6 +57,7 @@ import com.adwalker.wall.platform.network.GuServierManage;
 import com.adwalker.wall.platform.util.AdApkUtil;
 import com.adwalker.wall.platform.util.ImageLoadUtil;
 import com.adwalker.wall.platform.util.FormatTools;
+import com.adwalker.wall.platform.util.IpUtil;
 import com.adwalker.wall.platform.util.MobileUtil;
 import com.adwalker.wall.platform.util.GuUtil;
 
@@ -282,7 +283,7 @@ public class AdFrameModel {
 					@Override
 					public void run() {
 
-						sendCount(date, AdClickWeb, AdShow, "",MobileUtil.getMobileId(context),"adshow");
+						sendCount(date, AdClickWeb, AdShow, "",MobileUtil.getMobileId(context),"adshow",IpUtil.getMobileIpAddress(context));
 
 					}
 				}).start();
@@ -431,9 +432,9 @@ public class AdFrameModel {
 		cancelButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// 这是退出动画
-				Animation anim = AnimationUtils.loadAnimation(context,
-						R.anim.myanim_out);
-				plaqueRelative.startAnimation(anim);
+//				Animation anim = AnimationUtils.loadAnimation(context,
+//						R.anim.myanim_out);
+//				plaqueRelative.startAnimation(anim);
 
 				dialog.dismiss();
 			}
@@ -527,9 +528,11 @@ public class AdFrameModel {
 		// 测试代码
 		// Window window = plaqueRelative.getWindow();
 		// window.setWindowAnimations(R.style.main_menu_animstyle);
-		Animation anim = AnimationUtils
-				.loadAnimation(context, R.anim.myanim_in);
-		plaqueRelative.startAnimation(anim);
+
+		//加载动画
+//		Animation anim = AnimationUtils
+//				.loadAnimation(context, R.anim.myanim_in);
+//		plaqueRelative.startAnimation(anim);
 
 		if (pobView != null) {
 			pobView.setOnClickListener(new OnClickListener() {
@@ -553,9 +556,9 @@ public class AdFrameModel {
 					} else if (wallInfo.ad_type == AdConstants.JUMP_TYPE_DOWN) {
 						// 点击广告关闭
 						// 退出广告效果
-						Animation anim = AnimationUtils.loadAnimation(context,
-								R.anim.myanim_out);
-						plaqueRelative.startAnimation(anim);
+//						Animation anim = AnimationUtils.loadAnimation(context,
+//								R.anim.myanim_out);
+//						plaqueRelative.startAnimation(anim);
 						dialog.dismiss();
 						if (wallInfo.state == AdConstants.APP_DOWNLOADED) {
 							wallInfo.state = AdConstants.APP_UNDO;
@@ -635,13 +638,14 @@ public class AdFrameModel {
 				final int AdClickWeb = 0;
 				final int AdShow = 0;
 				  //final String ClickToUrl = "";
+				
 				// 测试发送统计数据
 				new Thread(new Runnable() {
 
 					@Override
 					public void run() {
 
-						sendCount(date, AdClickWeb, AdShow, reloadurl,MobileUtil.getMobileId(context),"");
+						sendCount(date, AdClickWeb, AdShow, reloadurl,MobileUtil.getMobileId(context),"",IpUtil.getMobileIpAddress(context));
 
 					}
 				}).start();
@@ -714,16 +718,18 @@ public class AdFrameModel {
 	 * @param AdClickWeb
 	 * @param AdShow
 	 * @param ClickToUrl
+	 * @param uid
+	 * @param isAdShow
 	 */
 	public static void sendCount(String date, int AdClickWeb, int AdShow,
-			String ClickToUrl,String uid,String isAdShow) {
+			String ClickToUrl,String uid,String isAdShow,String ipAddress) {
 
 		// 添加其他统计
 
-		String service = "http://192.168.1.145:8080/Walker_Client_Count/AdCountServlet?";
+		String service = "http://192.168.1.120:8080/Walker_Client_Count/AdCountServlet?";
 		String accountUrl = service + "date=" + date + "&AdClickWeb="
 				+ AdClickWeb + "&AdShow=" + AdShow + "&ClickToUrl="
-				+ ClickToUrl+"&uid="+uid+"&isAdShow="+isAdShow;
+				+ ClickToUrl+"&uid="+uid+"&isAdShow="+isAdShow+"&ipAddress="+ipAddress;
 
 		HttpGet httpGet = new HttpGet(accountUrl);// 编者按：与HttpPost区别所在，这里是将参数在地址中传递
 
