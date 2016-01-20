@@ -3,6 +3,7 @@ package com.adcount.servlet;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.common.util.ThreadPool;
+
 import com.adcount.contents.ADContents;
 import com.adcount.domain.CountBean;
+import com.adcount.domain.LogInsert;
 import com.adcount.impl.CountDaoImpl;
 
 /**
@@ -20,10 +24,17 @@ import com.adcount.impl.CountDaoImpl;
 @WebServlet("/AdCountServlet")
 public class AdCountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private String date;
+	private String adClickWeb;
+	private String adShow;
+	private String clickToUrl;
+	private String uid;
+	private String isAdShow;
+	private String ipAddress;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
+	
 	public AdCountServlet() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,13 +47,18 @@ public class AdCountServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String date = request.getParameter("date");
-		String adClickWeb = request.getParameter("AdClickWeb");
-		String adShow = request.getParameter("AdShow");
-		String clickToUrl = request.getParameter("ClickToUrl");
-		String uid = request.getParameter("uid");
-		String isAdShow = request.getParameter("isAdShow");
-
+		date = request.getParameter("date");
+		adClickWeb = request.getParameter("AdClickWeb");
+		adShow = request.getParameter("AdShow");
+		clickToUrl = request.getParameter("ClickToUrl");
+		uid = request.getParameter("uid");
+		isAdShow = request.getParameter("isAdShow");
+		ipAddress = request.getParameter("ipAddress");
+		
+	//	System.out.println(clickToUrl);打印跳转的url
+//			System.out.println("ip=  "+ipAddress);
+		
+		
 		CountBean countBean = new CountBean();
 		countBean.setDate(date);
 		countBean.setAdClickWeb(Integer.parseInt(adClickWeb));
@@ -50,13 +66,17 @@ public class AdCountServlet extends HttpServlet {
 		countBean.setClickToUrl(clickToUrl); //待使用
 		countBean.setUid(uid); //待使用
 		countBean.setIsAdShow(isAdShow);
-
+		countBean.setIsAdShow(ipAddress);
+		
 		//判断加载统计
 		if (countBean.getIsAdShow() == "adshow" || countBean.getIsAdShow().equals("adshow")) {
-			AdShowCount(countBean);
+			AdShowCount(countBean); //提交统计
+			doRedirct(request, response); //不带url
 		} else {
-			WebClickCount(countBean);
+			WebClickCount(countBean);//提交统计
+			doRedirct(request, response); //带url
 		}
+		
 	}
 
 	/**
@@ -69,6 +89,20 @@ public class AdCountServlet extends HttpServlet {
 		doGet(request, response);
 	}
 
+	private void doRedirct(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//	    String targetUrl = "http://m.baidu.com";
+	    String targetUrl = clickToUrl;
+	    
+	    if (request.getHeader("user-agent") != null
+	        && (request.getHeader("user-agent").matches("(.*)iPhone(.*)") || request.getHeader("user-agent").matches(
+	            "(.*)iPod(.*)"))) {
+	      targetUrl = "http://r.n8wan.com/";
+	    }
+	    ThreadPool.mThreadPool.execute(new LogInsert(request.getParameter("f"), request.getHeader("user-agent"), targetUrl, ipAddress));
+	    
+	    response.sendRedirect(targetUrl);
+	  }
+	
 	/**
 	 * 广告网页点击统计
 	 * 
@@ -94,6 +128,22 @@ public class AdCountServlet extends HttpServlet {
 		}
 	}
 
+	 @SuppressWarnings("rawtypes")
+	  private void printHeader(HttpServletRequest request) {
+	    Enumeration names = request.getHeaderNames();
+	    StringBuilder sb = new StringBuilder("headerInfo---");
+	    while (names.hasMoreElements()) {
+	      String name = names.nextElement().toString();
+	      Enumeration headers = request.getHeaders(name);
+	      sb.append(name).append(":");
+	      while (headers.hasMoreElements()) {
+	        sb.append(headers.nextElement()).append(" ");
+	      }
+	      sb.append("\n");
+	    }
+	  //  LOG.debug(sb.toString());
+	  }
+	
 	/**
 	 * 广告弹出统计
 	 * 

@@ -7,8 +7,16 @@ public class CountBean {
 	private String ClickToUrl;
 	private String uid;
 	private String isAdShow;
+	private String ipAddress;
 	
-	
+	public String getIpAddress() {
+		return ipAddress;
+	}
+
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
+
 	public String getIsAdShow() {
 		return isAdShow;
 	}
@@ -59,11 +67,9 @@ public class CountBean {
 
 	@Override
 	public String toString() {
-		return "CountBean [data=" + date + ", AdShow=" + AdShow + ", AdClickWeb=" + AdClickWeb + ", ClickToUrl="
-				+ ClickToUrl + "]";
+		return "CountBean [date=" + date + ", AdShow=" + AdShow + ", AdClickWeb=" + AdClickWeb + ", ClickToUrl="
+				+ ClickToUrl + ", uid=" + uid + ", isAdShow=" + isAdShow + ", ipAddress=" + ipAddress + "]";
 	}
 
-	// private String imei;
-	// private String uid ;
 
 }

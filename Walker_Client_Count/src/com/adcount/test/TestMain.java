@@ -1,6 +1,14 @@
 package com.adcount.test;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.common.util.ThreadPool;
+
 import com.adcount.domain.CountBean;
+import com.adcount.domain.LogInsert;
 import com.adcount.impl.CountDaoImpl;
 
 public class TestMain {
@@ -29,6 +37,10 @@ public class TestMain {
 //				countDao.insertCount("20160116");
 //				
 //			}
+	 
+	 
+	 
 	}
+	
 	
 }
