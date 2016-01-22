@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Walker_Client_Count
+Bundle-SymbolicName: Walker_Client_Count
+Bundle-Version: 1.0.0.qualifier
+Export-Package: com.adcount.contents,
+ com.adcount.domain,
+ com.adcount.impl,
+ com.adcount.mapping,
+ com.adcount.servlet,
+ com.adcount.test
