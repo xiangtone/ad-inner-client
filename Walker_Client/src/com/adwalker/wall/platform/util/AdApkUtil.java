@@ -18,7 +18,6 @@ import android.net.Uri;
 import android.os.Environment;
 import android.os.StatFs;
 
-import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.AdHintBean;
 import com.adwalker.wall.platform.bean.AppPackageBean;
 

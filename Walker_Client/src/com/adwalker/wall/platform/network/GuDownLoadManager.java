@@ -7,8 +7,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import com.adwalker.wall.platform.AdConstants;
-
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;

@@ -19,7 +19,6 @@ import android.widget.RelativeLayout;
 import com.adwalker.wall.init.AdInitialization;
 import com.adwalker.wall.init.AdWalkerListener;
 import com.adwalker.wall.platform.AdWalker;
-import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.WalkerAdBean;
 import com.adwalker.wall.platform.layout.AdBannerLayout;
 import com.adwalker.wall.platform.layout.AdDetailActivity;

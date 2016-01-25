@@ -3,7 +3,6 @@ package com.adwalker.wall.banner;
 import android.content.Context;
 
 import com.adwalker.wall.init.AdWalkerListener;
-import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.layout.AdBannerLayout;
 
 

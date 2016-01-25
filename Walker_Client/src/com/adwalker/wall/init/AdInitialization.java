@@ -7,7 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import com.adwalker.wall.platform.AdConstants;
+
 import com.adwalker.wall.platform.bean.AppPackageBean;
 import com.adwalker.wall.platform.bean.AdHintBean;
 import com.adwalker.wall.platform.network.GuNotifyManage;

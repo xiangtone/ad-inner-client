@@ -7,7 +7,7 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
-import com.adwalker.wall.platform.AdConstants;
+
 import com.adwalker.wall.platform.bean.AppPackageBean;
 import com.adwalker.wall.platform.network.GuHttpNetwork;
 import com.adwalker.wall.platform.util.AdDbBase;

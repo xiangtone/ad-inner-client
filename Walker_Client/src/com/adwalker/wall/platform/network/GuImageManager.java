@@ -15,7 +15,7 @@ import java.util.WeakHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.http.client.methods.HttpGet;
-import com.adwalker.wall.platform.AdConstants;
+
 import com.adwalker.wall.platform.util.GuLogUtil;
 import android.content.Context;
 import android.graphics.Bitmap;

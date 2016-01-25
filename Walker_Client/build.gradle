@@ -36,6 +36,10 @@ android {
             java.srcDirs = ['packageConfig/develop/src']
             res.srcDirs = ['packageConfig/develop/res']
         }
+        alphaTest{
+            java.srcDirs = ['packageConfig/alphaTest/src']
+            res.srcDirs = ['packageConfig/alphaTest/res']
+        }
     }
 
     productFlavors {
@@ -46,6 +50,9 @@ android {
         }
         formal {
             applicationId = 'com.xtone.ad'
+        }
+        alphaTest {
+            applicationId = 'com.xtone.ad.alphaTest'
         }
     }
 
