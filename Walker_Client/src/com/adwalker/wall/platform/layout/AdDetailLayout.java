@@ -20,6 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import com.adwalker.wall.init.AdInitialization;
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.WalkerDetailBean;
 import com.adwalker.wall.platform.bean.AdHintBean;
 import com.adwalker.wall.platform.bean.WalkerAdBean;

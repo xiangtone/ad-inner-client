@@ -4,6 +4,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.widget.Toast;
 import com.adwalker.wall.init.AdWalkerListener;
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.AdWalker;
 import com.adwalker.wall.platform.bean.WalkerAdBean;
 import com.adwalker.wall.platform.util.GuLogUtil;

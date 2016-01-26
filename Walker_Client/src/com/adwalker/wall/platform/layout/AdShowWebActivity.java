@@ -1,5 +1,6 @@
 package com.adwalker.wall.platform.layout;
 
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.WalkerAdBean;
 import com.adwalker.wall.platform.network.GuServierManage;
 import com.adwalker.wall.platform.util.MobileUtil;

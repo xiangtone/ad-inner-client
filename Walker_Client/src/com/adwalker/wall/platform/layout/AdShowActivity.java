@@ -4,6 +4,7 @@ import java.util.Hashtable;
 import java.util.Timer;
 import java.util.TimerTask;
 import com.adwalker.wall.init.AdInitialization;
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.WalkerAdBean;
 import com.adwalker.wall.platform.network.GuDownloadInfo;
 import com.adwalker.wall.platform.network.GuNotifyManage;
@@ -55,7 +56,7 @@ public class AdShowActivity extends Activity {
 		
 		int pagetype = getIntent().getIntExtra("pagetype",0);
 		String url = "";
-		if(pagetype==AdConstants.PageTypeScore){
+		if(pagetype== AdConstants.PageTypeScore){
 			 url = AdConstants.SERVER_SDK + AdConstants.SCORE_WALL_ADRESS;
 		}else{
 			 url = AdConstants.SERVER_SDK + AdConstants.RECOMMEND_WALL_ADRESS;

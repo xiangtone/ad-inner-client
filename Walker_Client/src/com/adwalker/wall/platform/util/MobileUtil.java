@@ -16,6 +16,7 @@ import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.MobileBean;
 
 

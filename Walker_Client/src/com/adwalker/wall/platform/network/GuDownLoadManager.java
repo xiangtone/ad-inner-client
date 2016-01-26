@@ -12,6 +12,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.Toast;
 
+import com.adwalker.wall.platform.AdConstants;
+
 
 public class GuDownLoadManager extends Observable {
 
@@ -29,7 +31,7 @@ public class GuDownLoadManager extends Observable {
 		if (task!=null) {
 			setChanged();
 		}
-		if(concurrentMap.size()<AdConstants.DOWNLOAD_MAX){
+		if(concurrentMap.size()< AdConstants.DOWNLOAD_MAX){
 			concurrentMap.put(task.mId, new GuDownLoadTask(task,context,indexValue,catagory,handler));
 			notifyObservers(task);
 			return true;

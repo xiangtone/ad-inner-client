@@ -5,18 +5,18 @@ import com.adwalker.wall.init.AdWalkerListener;
 import com.adwalker.wall.platform.bean.WalkerAdBean;
 
 public class AdConstants {
-	
-  public final static String SERVER_SDK = "http://192.168.0.51:8080/ad-service-test/";
-	
+
+
 	public final static String WALKER_VERSION = "androidV2.1.0"; // SDK版本
-	
-//	public final static String SERVER_SDK = "http://192.168.0.118:8081/AdService/";
+
+	public final static String SERVER_SDK = "http://192.168.0.51:8080/ad-service-test/";
+	//	public final static String SERVER_SDK = "http://192.168.0.118:8081/AdService/";
 //	public final static String SERVER_SDK = "http://192.168.0.182/AdService/";
 //	public final static String SERVER_SDK = "http://192.168.0.114:8080/AdService/";
 //	public final static String SERVER_SDK = "http://106.120.153.236/AdService/";
 	public final static String SCORE_WALL_ADRESS = "html/adscorewall.html";
 	public final static String RECOMMEND_WALL_ADRESS = "html/adhotwall.html";
-	
+
 	public final static String SERVER_INITIALIZE = SERVER_SDK
 			+ "android/init.do"; // 初始化
 	public final static String SERVER_SOFTLIST = SERVER_SDK
@@ -48,6 +48,10 @@ public class AdConstants {
 	public final static int BANNER_BANNER = 0; // 图片-推广条小(320*80)
 	public final static int PLAQUE_CROSS = 2; // 图片-插屏横屏()
 	public final static int PLAQUE_VERTICAL = 3; // 图片-插屏竖屏()
+
+	//添加
+	public final static int TIMEPLAQUE_CROSS = 44; // 图片-插屏横屏() 倒数 
+	public final static int TIMEPLAQUE_VERTICAL = 55; // 图片-插屏竖屏() 倒数 
 
 	/**
 	 * 通知栏
@@ -94,7 +98,7 @@ public class AdConstants {
 	public final static String LOG_ERR = "[WalkerErr]";
 	public final static String LOG_PATH = "/WalkerDowns/.Log/";
 
-	
+
 	public final static String SHARED = "com.adwalker.wall.platform.SharedPreferences"; // SharedPreferences
 	public final static Uri PREFERRED_APN_URI = Uri.parse("content://telephony/carriers/preferapn"); // APN_URI
 
@@ -138,7 +142,7 @@ public class AdConstants {
 
 	public static int sign_status; // 签到开关,0关闭，1一次签到，2次签到。
 	public static int isSignIn = 0;// 0：获取积分墙，1获取签到列表
-	
+
 	public static AdWalkerListener adWalkerListener;// 0：获取积分墙，1获取签到列表
 
 }

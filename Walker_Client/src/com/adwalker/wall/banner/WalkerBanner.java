@@ -3,6 +3,7 @@ package com.adwalker.wall.banner;
 import android.content.Context;
 
 import com.adwalker.wall.init.AdWalkerListener;
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.layout.AdBannerLayout;
 
 
@@ -25,7 +26,7 @@ public class WalkerBanner {
 	}
 	
 	public void showBanner(Context context,AdWalkerListener adWalkerListener,final AdBannerLayout layout) {
-		BannerManage.showBanner(context, layout,AdConstants.BANNER_BANNER,adWalkerListener);
+		BannerManage.showBanner(context, layout, AdConstants.BANNER_BANNER,adWalkerListener);
 	}
 	
 	public AdBannerLayout getLayout(Context context) {

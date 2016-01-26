@@ -26,6 +26,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.GradientDrawable.Orientation;
 import android.os.Environment;
 
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.network.GuHttpNetwork;
 
 public class ImageLoadUtil {

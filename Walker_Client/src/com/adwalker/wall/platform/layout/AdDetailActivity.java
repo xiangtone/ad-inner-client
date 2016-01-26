@@ -19,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.adwalker.wall.init.AdInitialization;
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.WalkerDetailBean;
 import com.adwalker.wall.platform.bean.AdHintBean;
 import com.adwalker.wall.platform.bean.WalkerAdBean;

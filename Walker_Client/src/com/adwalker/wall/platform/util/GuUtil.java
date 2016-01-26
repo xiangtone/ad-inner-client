@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.WalkerDetailBean;
 
 /**

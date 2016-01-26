@@ -17,6 +17,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout.LayoutParams;
 
 import com.adwalker.wall.init.AdInitialization;
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.AdItemBean;
 import com.adwalker.wall.platform.bean.WalkerAdBean;
 import com.adwalker.wall.platform.network.GuHttpNetwork;

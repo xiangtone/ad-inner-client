@@ -34,6 +34,7 @@ import android.content.Context;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.util.GuDes3;
 import com.adwalker.wall.platform.util.GuLogUtil;
 import com.adwalker.wall.platform.util.MobileUtil;

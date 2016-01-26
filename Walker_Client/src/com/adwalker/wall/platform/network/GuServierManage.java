@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import android.content.Context;
 
+import com.adwalker.wall.platform.AdConstants;
 import com.adwalker.wall.platform.bean.WalkerDetailBean;
 import com.adwalker.wall.platform.util.GuLogUtil;
 import com.adwalker.wall.platform.util.MobileUtil;
