@@ -10,7 +10,7 @@ public class AdConstants {
 	public final static String WALKER_VERSION = "androidV2.1.0"; // SDK版本
 
 	public final static String SERVER_SDK = "http://192.168.0.51:8080/ad-service-test/";
-	//	public final static String SERVER_SDK = "http://192.168.0.118:8081/AdService/";
+
 //	public final static String SERVER_SDK = "http://192.168.0.182/AdService/";
 //	public final static String SERVER_SDK = "http://192.168.0.114:8080/AdService/";
 //	public final static String SERVER_SDK = "http://106.120.153.236/AdService/";

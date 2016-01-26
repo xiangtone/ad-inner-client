@@ -10,7 +10,7 @@ public class AdConstants {
 	
 	public final static String WALKER_VERSION = "androidV2.1.0"; // SDK版本
 	
-//	public final static String SERVER_SDK = "http://192.168.0.118:8081/AdService/";
+
 //	public final static String SERVER_SDK = "http://192.168.0.182/AdService/";
 //	public final static String SERVER_SDK = "http://192.168.0.114:8080/AdService/";
 //	public final static String SERVER_SDK = "http://106.120.153.236/AdService/";
@@ -48,6 +48,8 @@ public class AdConstants {
 	public final static int BANNER_BANNER = 0; // 图片-推广条小(320*80)
 	public final static int PLAQUE_CROSS = 2; // 图片-插屏横屏()
 	public final static int PLAQUE_VERTICAL = 3; // 图片-插屏竖屏()
+	public final static int TIMEPLAQUE_CROSS = 44; // 图片-插屏横屏() 倒数 
+	public final static int TIMEPLAQUE_VERTICAL = 55; // 图片-插屏竖屏() 倒数 
 
 	/**
 	 * 通知栏
