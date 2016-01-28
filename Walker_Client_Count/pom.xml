@@ -39,6 +39,8 @@
 				</excludes>
 			</resource>
 		</resources>
+		
+		
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -52,7 +54,7 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<warSourceDirectory>${basedir}/WebRoot</warSourceDirectory>
+					<warSourceDirectory>${basedir}/WebContent</warSourceDirectory>
 					<version>3.0</version>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<webResources>
@@ -64,6 +66,9 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		
+		
+		
 	</build>
 	<profiles>
 		<profile>
@@ -72,9 +77,7 @@
 				<runtime.env>packageConfig\product</runtime.env>
 				<final.name>r.n8wan.com</final.name>
 			</properties>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+			
 		</profile>
 		<profile>
 			<id>test</id>
@@ -82,6 +85,11 @@
 				<runtime.env>packageConfig\test</runtime.env>
 				<final.name>r.n8wan.com-test</final.name>
 			</properties>
+			
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			
 		</profile>
 	</profiles>
 </project>
