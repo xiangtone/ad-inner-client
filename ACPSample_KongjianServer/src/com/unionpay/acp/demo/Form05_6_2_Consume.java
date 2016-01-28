@@ -29,7 +29,7 @@ import com.unionpay.acp.sdk.SDKUtil;
  */
 
 public class Form05_6_2_Consume extends HttpServlet {
-
+	
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -68,7 +68,8 @@ public class Form05_6_2_Consume extends HttpServlet {
 		contentData.put("merId", "898440379930020");   		 				//商户号码，请改成自己申请的商户号或者open上注册得来的777商户号测试
 		contentData.put("accessType", "0");            		 	//接入类型，商户接入填0 ，不需修改（0：直连商户， 1： 收单机构 2：平台商户）
 		contentData.put("orderId", orderId);        	 	    //商户订单号，8-40位数字字母，不能含“-”或“_”，可以自行定制规则	
-		contentData.put("txnTime", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));		 		    //订单发送时间，取系统时间，格式为YYYYMMDDhhmmss，必须取当前时间，否则会报txnTime无效
+		//contentData.put("txnTime", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));		 		    //订单发送时间，取系统时间，格式为YYYYMMDDhhmmss，必须取当前时间，否则会报txnTime无效
+		contentData.put("txnTime", txnTime);		 		    //订单发送时间，取系统时间，格式为YYYYMMDDhhmmss，必须取当前时间，否则会报txnTime无效
 		contentData.put("accType", "01");					 	//账号类型 01：银行卡02：存折03：IC卡帐号类型(卡介质)
 		
 		
@@ -122,7 +123,7 @@ public class Form05_6_2_Consume extends HttpServlet {
 		}else{
 			//其他应答码为失败请排查原因
 			//TODO
-			
+			System.out.println("respCode"+respCode);
 		}
 
 		String reqMessage = DemoBase.genHtmlResult(submitFromData);
