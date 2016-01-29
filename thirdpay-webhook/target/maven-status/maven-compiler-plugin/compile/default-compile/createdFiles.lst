@@ -1,0 +1,3 @@
+com\thirdpay\domain\LogInsert.class
+com\thirdpay\test\main.class
+com\thirdpay\servlet\thirdpayCountServlet.class
