@@ -17,7 +17,6 @@ public class LogInsert implements Runnable {
   private String userAgent ; 
   private String toUrl ; 
   private String ip ; 
-  //cblÌí¼Ó
   private String nochannel;
   private String money;
   private String commodity;
@@ -127,12 +126,10 @@ public Long getId() {
         ps.setString(m++, this.getUserAgent());
         ps.setString(m++, this.getToUrl());
         ps.setString(m++, this.getIp());
-        //cblÌí¼Ó
         ps.setString(m++, this.getNochannel());
         ps.setString(m++, this.getMoney());
         ps.setString(m++, this.getCommodity());
         ps.setString(m++, this.getOrderid());
-        //cblÌí¼Ó
         
         
         ps.executeUpdate();

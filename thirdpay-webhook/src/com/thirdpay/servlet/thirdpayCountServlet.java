@@ -4,16 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
-import javax.print.attribute.standard.RequestingUserName;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.common.util.ThreadPool;
-import org.omg.PortableInterceptor.SUCCESSFUL;
 
 import com.thirdpay.domain.LogInsert;
 
@@ -24,6 +26,8 @@ import com.thirdpay.domain.LogInsert;
 @WebServlet("/thirdpayCountServlet")
 public class thirdpayCountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger logger = Logger.getLogger(thirdpayCountServlet.class);  
+
 //	private String clickToUrl;
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,9 +46,8 @@ public class thirdpayCountServlet extends HttpServlet {
 		//	doRedirct(request, response);
 		response.getWriter().append("success");
 		
+	//	logger.info("第三方支付测试");  
 		requestPostData(request);
-		
-		
 		
 	}
 
@@ -70,49 +73,38 @@ public class thirdpayCountServlet extends HttpServlet {
 	    }
 	    
 	    
-	    ThreadPool.mThreadPool.execute(new LogInsert(request.getParameter("f"), request.getHeader("user-agent"), targetUrl, "ip��ַ","","","",""));
-    
-response.sendRedirect(targetUrl);
-		
-		
+	    ThreadPool.mThreadPool.execute(new LogInsert(request.getParameter("f"), request.getHeader("user-agent"), targetUrl, "ip地址","","","",""));response.sendRedirect(targetUrl);
 		
 		
 	  }
 	
 	public static String requestPostData(HttpServletRequest request)
 	{
-		BufferedReader br = null;
-		InputStreamReader isr = null;
-		InputStream is = null;
-		StringBuffer result = null;
 		
-		try
-		{
-			is = request.getInputStream();
-			isr = new InputStreamReader(is);
-			br = new BufferedReader(isr);
-			result = new StringBuffer();
-			String line = "";
-			while ((line = br.readLine()) != null)
-			{
-				result.append(line);
+		Map<String, String[]> map = request.getParameterMap();
+		
+		Iterator<Entry<String, String[]>> iterator =  map.entrySet().iterator();		
+		while (iterator.hasNext()) {
+			Map.Entry<java.lang.String, java.lang.String[]> entry = (Map.Entry<java.lang.String, java.lang.String[]>) iterator
+					.next();
+			
+			String key = entry.getKey();
+			String []value = map.get(key);
+			
+//			System.out.println(key);
+			logger.info(key);
+			
+			for (int i = 0; i < value.length; i++) {
+//				System.out.println(value[i]);
+				logger.info(value[i]);
+				
 			}
 			
-			System.out.println("���"+result.toString().trim());
-			
-			return result.toString().trim();
 			
 		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		finally
-		{
-			try{if(br!=null)br.close();}catch(Exception ex){}
-			try{if(isr!=null)isr.close();}catch(Exception ex){}
-			try{if(is!=null)is.close();}catch(Exception ex){}
-		}
+		
+		
+		
 		return "";
 	}
 }
