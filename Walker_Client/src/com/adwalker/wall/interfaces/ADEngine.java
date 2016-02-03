@@ -27,11 +27,11 @@ public class ADEngine implements AdwalkerInterface {
 	}
 
 	@Override
-	public void insertAD() {
+	public void insertAD(String key) {
 		
+//		System.out.println("插屏广告执行成功");
+//		String key = "AWC242AO5NVWYHO60OWANJ4MWYNCBVF59U";
 		
-		System.out.println("插屏广告执行成功");
-		String key = "AWC242AO5NVWYHO60OWANJ4MWYNCBVF59U";
 		// 初始化,当应用启动时调用
 		AdWalker.instance().init(context, key, "adwalker");
 		AdWalker.instance(new AdWalkerListener() {
@@ -89,10 +89,10 @@ public class ADEngine implements AdwalkerInterface {
 	
 	
 	@Override
-	public void insertADtimeout() {
+	public void insertADtimeout(String key) {
 		
 		System.out.println("插屏广告执行成功");
-		String key = "AWC242AO5NVWYHO60OWANJ4MWYNCBVF59U";
+		//String key = "AWC242AO5NVWYHO60OWANJ4MWYNCBVF59U";
 		// 初始化,当应用启动时调用
 		AdWalker.instance().init(context, key, "adwalker");
 		AdWalker.instance(new AdWalkerListener() {
