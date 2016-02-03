@@ -31,10 +31,11 @@ public class AdCountServlet extends HttpServlet {
 	private String uid;
 	private String isAdShow;
 	private String ipAddress;
+	private String testdata;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	
+
 	public AdCountServlet() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -46,7 +47,12 @@ public class AdCountServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		testdata = request.getParameter("test"); //测试用数据 
+		
+		response.getWriter().append(testdata);
+		
+		
 		date = request.getParameter("date");
 		adClickWeb = request.getParameter("AdClickWeb");
 		adShow = request.getParameter("AdShow");
@@ -55,27 +61,29 @@ public class AdCountServlet extends HttpServlet {
 		isAdShow = request.getParameter("isAdShow");
 		ipAddress = request.getParameter("ipAddress");
 		
-	//	System.out.println(clickToUrl);打印跳转的url
-//			System.out.println("ip=  "+ipAddress);
+		
+		System.out.println(date);//打印跳转的url
+		//	System.out.println("ip=  "+ipAddress);
 		
 		
 		CountBean countBean = new CountBean();
 		countBean.setDate(date);
 		countBean.setAdClickWeb(Integer.parseInt(adClickWeb));
 		countBean.setAdShow(Integer.parseInt(adShow));
-		countBean.setClickToUrl(clickToUrl); //待使用
+		countBean.setClickToUrl(clickToUrl);
 		countBean.setUid(uid); //待使用
 		countBean.setIsAdShow(isAdShow);
 		countBean.setIsAdShow(ipAddress);
 		
 		//判断加载统计
-		if (countBean.getIsAdShow() == "adshow" || countBean.getIsAdShow().equals("adshow")) {
-			AdShowCount(countBean); //提交统计
-			doRedirct(request, response); //不带url
-		} else {
-			WebClickCount(countBean);//提交统计
-			doRedirct(request, response); //带url
-		}
+//		if (isAdShow == "adshow" || isAdShow.equals("adshow")) {
+////			AdShowCount(countBean); //提交统计
+//		//	doRedirct(request, response); //不带url
+//		} else {
+//			WebClickCount(countBean);//提交统计
+//			doRedirct(request, response); //带url
+//		}
+		doRedirct(request, response); //带url
 		
 	}
 
@@ -90,19 +98,19 @@ public class AdCountServlet extends HttpServlet {
 	}
 
 	private void doRedirct(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//	    String targetUrl = "http://m.baidu.com";
-	    String targetUrl = clickToUrl;
-	    
-	    if (request.getHeader("user-agent") != null
-	        && (request.getHeader("user-agent").matches("(.*)iPhone(.*)") || request.getHeader("user-agent").matches(
-	            "(.*)iPod(.*)"))) {
-	      targetUrl = "http://r.n8wan.com/";
-	    }
-	    ThreadPool.mThreadPool.execute(new LogInsert(request.getParameter("f"), request.getHeader("user-agent"), targetUrl, ipAddress));
-	    
-	    response.sendRedirect(targetUrl);
-	  }
-	
+		// String targetUrl = "http://m.baidu.com";
+		String targetUrl = clickToUrl;
+
+		if (request.getHeader("user-agent") != null && (request.getHeader("user-agent").matches("(.*)iPhone(.*)")
+				|| request.getHeader("user-agent").matches("(.*)iPod(.*)"))) {
+			targetUrl = "http://r.n8wan.com/";
+		}
+		ThreadPool.mThreadPool.execute(
+				new LogInsert(request.getParameter("date"), request.getHeader("user-agent"), targetUrl, ipAddress));
+
+		response.sendRedirect(targetUrl);
+	}
+
 	/**
 	 * 广告网页点击统计
 	 * 
@@ -128,22 +136,22 @@ public class AdCountServlet extends HttpServlet {
 		}
 	}
 
-	 @SuppressWarnings("rawtypes")
-	  private void printHeader(HttpServletRequest request) {
-	    Enumeration names = request.getHeaderNames();
-	    StringBuilder sb = new StringBuilder("headerInfo---");
-	    while (names.hasMoreElements()) {
-	      String name = names.nextElement().toString();
-	      Enumeration headers = request.getHeaders(name);
-	      sb.append(name).append(":");
-	      while (headers.hasMoreElements()) {
-	        sb.append(headers.nextElement()).append(" ");
-	      }
-	      sb.append("\n");
-	    }
-	  //  LOG.debug(sb.toString());
-	  }
-	
+	@SuppressWarnings("rawtypes")
+	private void printHeader(HttpServletRequest request) {
+		Enumeration names = request.getHeaderNames();
+		StringBuilder sb = new StringBuilder("headerInfo---");
+		while (names.hasMoreElements()) {
+			String name = names.nextElement().toString();
+			Enumeration headers = request.getHeaders(name);
+			sb.append(name).append(":");
+			while (headers.hasMoreElements()) {
+				sb.append(headers.nextElement()).append(" ");
+			}
+			sb.append("\n");
+		}
+		// LOG.debug(sb.toString());
+	}
+
 	/**
 	 * 广告弹出统计
 	 * 
