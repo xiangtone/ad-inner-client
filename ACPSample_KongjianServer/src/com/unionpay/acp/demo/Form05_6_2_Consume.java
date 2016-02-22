@@ -91,9 +91,9 @@ public class Form05_6_2_Consume extends HttpServlet {
 //		String customerInfoStr = SDKUtil.getCustomerInfoWithEncrypt(customerInfoMap,"6216261000000000018",SDKUtil.encoding_UTF8);				
 		
 //		contentData.put("customerInfo", customerInfoStr);
-		contentData.put("txnAmt", txnAmt);						 	//交易金额 单位为分，不能带小数点
+		contentData.put("txnAmt", txnAmt);						    //交易金额 单位为分，不能带小数点
 		contentData.put("currencyCode", "156");                     //境内商户固定 156 人民币
-		contentData.put("reqReserved", "透传字段");                    //商户自定义保留域，交易应答时会原样返回
+		contentData.put("reqReserved", "透传字段");                   //商户自定义保留域，交易应答时会原样返回
 		
 		//后台通知地址（需设置为外网能访问 http https均可），支付成功后银联会自动将异步通知报文post到商户上送的该地址，【支付失败的交易银联不会发送后台通知】
 		//后台通知参数详见open.unionpay.com帮助中心 下载  产品接口规范  网关支付产品接口规范 消费交易 商户通知
