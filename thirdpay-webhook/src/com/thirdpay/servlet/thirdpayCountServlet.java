@@ -27,7 +27,6 @@ import com.thirdpay.domain.LogInsert;
 public class thirdpayCountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(thirdpayCountServlet.class);  
-
 //	private String clickToUrl;
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,6 +43,10 @@ public class thirdpayCountServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		//	doRedirct(request, response);
+		String xx_notifyData = request.getParameter("xx_notifyData");
+		
+		logger.info(xx_notifyData); //打印自定义的传值 如appkey
+		
 		response.getWriter().append("success");
 		
 	//	logger.info("第三方支付测试");  
