@@ -103,6 +103,7 @@ public class Form05_6_2_Consume extends HttpServlet {
 		//    4.如果银联通知服务器发送通知后10秒内未收到返回状态码或者应答码非http200或302，那么银联会间隔一段时间再次发送。总共发送5次，银联后续间隔1、2、4、5 分钟后会再次通知。
 		//    5.后台通知地址如果上送了带有？的参数，例如：http://abc/web?a=b&c=d 在后台通知处理程序验证签名之前需要编写逻辑将这些字段去掉再验签，否则将会验签失败
 		contentData.put("backUrl", DemoBase.backUrl+"?xx_notifyData="+xx_notifyData);
+//		contentData.put("backUrl", DemoBase.backUrl);
 		
 		/**对请求参数进行签名并发送http post请求，接收同步应答报文**/
 		Map<String, String> submitFromData = SDKUtil.signData(contentData,SDKUtil.encoding_UTF8);			 //报文中certId,signature的值是在signData方法中获取并自动赋值的，只要证书配置正确即可。
