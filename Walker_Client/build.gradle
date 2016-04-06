@@ -40,6 +40,10 @@ android {
             java.srcDirs = ['packageConfig/alphaTest/src']
             res.srcDirs = ['packageConfig/alphaTest/res']
         }
+        alphaHui{
+            java.srcDirs = ['packageConfig/alphaHui/src']
+            res.srcDirs = ['packageConfig/alphaHui/res']
+        }
     }
 
     productFlavors {
@@ -53,6 +57,9 @@ android {
         }
         alphaTest {
             applicationId = 'com.xtone.ad.alphaTest'
+        }
+        alphaHui {
+            applicationId = 'com.x.ad.alphaHui'
         }
     }
 

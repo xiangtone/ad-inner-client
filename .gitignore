@@ -45,3 +45,4 @@ captures/
 
 # Keystore files
 *.jks
+/Walker_Client/packageConfig/alphaHui
