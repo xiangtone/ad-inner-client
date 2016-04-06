@@ -202,7 +202,8 @@ public class AdFrameModel {
 									context,
 									android.R.style.Theme_Translucent_NoTitleBar);
 							dialog.setCancelable(false);
-							if (gifInStream != null && !gifInStream.equals("") ) {
+
+							if ( gifInStream != null && !gifInStream.equals("") ) {
 								dialog.show();
 							}
 
@@ -259,22 +260,6 @@ public class AdFrameModel {
 					}
 				}).start();
 				
-				//发送统计数据cbl
-				final String date = new SimpleDateFormat("yyyyMMdd")
-						.format(new Date());
-				final int AdClickWeb = 0;
-				final int AdShow = 0;
-				  //final String ClickToUrl = "";
-				// 测试发送统计数据
-				new Thread(new Runnable() {
-
-					@Override
-					public void run() {
-
-						sendCount(date, AdClickWeb, AdShow, "",MobileUtil.getMobileId(context),"adshow",IpUtil.getMobileIpAddress(context));
-
-					}
-				}).start();
 				
 			}
 
@@ -621,10 +606,10 @@ public class AdFrameModel {
 				
 				
 				// 发送统计数据
-				final String date = new SimpleDateFormat("yyyyMMdd")
+				final String date = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")
 						.format(new Date());
-				final int AdClickWeb = 0;
-				final int AdShow = 0;
+				final int AdClickWeb = 0; //点击了网页
+				final int AdShow = 0; //展示了广告
 				  //final String ClickToUrl = "";
 				
 				// 测试发送统计数据
@@ -658,7 +643,7 @@ public class AdFrameModel {
 
 		dialog.setCancelable(false);
 
-		if (!gifInStream.equals("") && gifInStream != null) {
+		if ( gifInStream != null && !gifInStream.equals("") ) {
 			dialog.show();
 		}
 		// 增加倒数时间dialog miss
@@ -702,23 +687,21 @@ public class AdFrameModel {
 	}
 	/**
 	 * 发送WebView点击统计数据
-	 * @param date
-	 * @param AdClickWeb
-	 * @param AdShow
-	 * @param ClickToUrl
-	 * @param uid
-	 * @param isAdShow
+	 * @param date 时间
+	 * @param AdClickWeb 广告web点击
+	 * @param AdShow 广告展示
+	 * @param ClickToUrl 点击跳转后的url
+	 * @param uid 
+	 * @param isAdShow 是否展示广告窗
 	 */
 	public static void sendCount(String date, int AdClickWeb, int AdShow,
 			String ClickToUrl,String uid,String isAdShow,String ipAddress) {
-
+		
 		// 添加其他统计
-
-		String service = "http://192.168.1.120:8080/Walker_Client_Count/AdCountServlet?";
-		String accountUrl = service + "date=" + date + "&AdClickWeb="
+		String accountUrl = AdConstants.adUrl_service + "?date=" + date + "&AdClickWeb="
 				+ AdClickWeb + "&AdShow=" + AdShow + "&ClickToUrl="
 				+ ClickToUrl+"&uid="+uid+"&isAdShow="+isAdShow+"&ipAddress="+ipAddress;
-
+		
 		HttpGet httpGet = new HttpGet(accountUrl);// 编者按：与HttpPost区别所在，这里是将参数在地址中传递
 
 		try {

@@ -15,9 +15,6 @@
 		<result property="age" column="age" />
 	</resultMap>
 
-
-
-
 	<select id="getdate" parameterType="java.lang.String" resultType="com.adcount.domain.CountBean">
 		select * from adcount where date=#{date}
 	</select>

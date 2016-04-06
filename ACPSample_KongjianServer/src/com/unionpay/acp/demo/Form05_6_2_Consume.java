@@ -29,7 +29,7 @@ import com.unionpay.acp.sdk.SDKUtil;
  */
 
 public class Form05_6_2_Consume extends HttpServlet {
-
+	
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
@@ -52,6 +52,8 @@ public class Form05_6_2_Consume extends HttpServlet {
 		String orderId = req.getParameter("orderId");
 		String txnTime = req.getParameter("txnTime");
 		
+		String xx_notifyData = req.getParameter("xx_notifyData");
+		
 		Map<String, String> contentData = new HashMap<String, String>();
 		
 		/***银联全渠道系统，产品参数，除了encoding自行选择外其他不需修改***/
@@ -68,7 +70,8 @@ public class Form05_6_2_Consume extends HttpServlet {
 		contentData.put("merId", "898440379930020");   		 				//商户号码，请改成自己申请的商户号或者open上注册得来的777商户号测试
 		contentData.put("accessType", "0");            		 	//接入类型，商户接入填0 ，不需修改（0：直连商户， 1： 收单机构 2：平台商户）
 		contentData.put("orderId", orderId);        	 	    //商户订单号，8-40位数字字母，不能含“-”或“_”，可以自行定制规则	
-		contentData.put("txnTime", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));		 		    //订单发送时间，取系统时间，格式为YYYYMMDDhhmmss，必须取当前时间，否则会报txnTime无效
+		//contentData.put("txnTime", new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()));		 		    //订单发送时间，取系统时间，格式为YYYYMMDDhhmmss，必须取当前时间，否则会报txnTime无效
+		contentData.put("txnTime", txnTime);		 		    //订单发送时间，取系统时间，格式为YYYYMMDDhhmmss，必须取当前时间，否则会报txnTime无效
 		contentData.put("accType", "01");					 	//账号类型 01：银行卡02：存折03：IC卡帐号类型(卡介质)
 		
 		
@@ -90,16 +93,17 @@ public class Form05_6_2_Consume extends HttpServlet {
 //		String customerInfoStr = SDKUtil.getCustomerInfoWithEncrypt(customerInfoMap,"6216261000000000018",SDKUtil.encoding_UTF8);				
 		
 //		contentData.put("customerInfo", customerInfoStr);
-		contentData.put("txnAmt", txnAmt);						 	//交易金额 单位为分，不能带小数点
+		contentData.put("txnAmt", txnAmt);						    //交易金额 单位为分，不能带小数点
 		contentData.put("currencyCode", "156");                     //境内商户固定 156 人民币
-		contentData.put("reqReserved", "透传字段");                    //商户自定义保留域，交易应答时会原样返回
+		contentData.put("reqReserved", "透传字段");                   //商户自定义保留域，交易应答时会原样返回
 		
 		//后台通知地址（需设置为外网能访问 http https均可），支付成功后银联会自动将异步通知报文post到商户上送的该地址，【支付失败的交易银联不会发送后台通知】
 		//后台通知参数详见open.unionpay.com帮助中心 下载  产品接口规范  网关支付产品接口规范 消费交易 商户通知
 		//注意:1.需设置为外网能访问，否则收不到通知    2.http https均可  3.收单后台通知后需要10秒内返回http200或302状态码 
 		//    4.如果银联通知服务器发送通知后10秒内未收到返回状态码或者应答码非http200或302，那么银联会间隔一段时间再次发送。总共发送5次，银联后续间隔1、2、4、5 分钟后会再次通知。
 		//    5.后台通知地址如果上送了带有？的参数，例如：http://abc/web?a=b&c=d 在后台通知处理程序验证签名之前需要编写逻辑将这些字段去掉再验签，否则将会验签失败
-		contentData.put("backUrl", DemoBase.backUrl);
+		contentData.put("backUrl", DemoBase.backUrl+"?xx_notifyData="+xx_notifyData);
+//		contentData.put("backUrl", DemoBase.backUrl);
 		
 		/**对请求参数进行签名并发送http post请求，接收同步应答报文**/
 		Map<String, String> submitFromData = SDKUtil.signData(contentData,SDKUtil.encoding_UTF8);			 //报文中certId,signature的值是在signData方法中获取并自动赋值的，只要证书配置正确即可。
@@ -122,7 +126,7 @@ public class Form05_6_2_Consume extends HttpServlet {
 		}else{
 			//其他应答码为失败请排查原因
 			//TODO
-			
+			System.out.println("respCode"+respCode);
 		}
 
 		String reqMessage = DemoBase.genHtmlResult(submitFromData);
