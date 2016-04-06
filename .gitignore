@@ -5,3 +5,6 @@
 /Walker_Client/gradle
 /Walker_Client_Count/build
 /Walker_Client/build
+
+# Intellij
+*.iml
