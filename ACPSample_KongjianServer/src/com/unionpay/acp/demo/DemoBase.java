@@ -41,13 +41,12 @@ public class DemoBase {
 //	public static String backUrl = "http://unionpay-server.n8wan.com:29141/";//受理方和发卡方自选填写的域[O]--后台通知地址
 	
 	//已修改
-	public static String backUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";//受理方和发卡方自选填写的域[O]--后台通知地址
+	public static String backUrl = "192.168.1.133:8080/thirdpay-webhook/thirdpayCountServlet";//受理方和发卡方自选填写的域[O]--后台通知地址
 
 	// 商户发送交易时间 格式:YYYYMMDDhhmmss
 	public static String getCurrentTime() {
 		return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 	}
-	
 	
 	// AN8..40 商户订单号，不能含"-"或"_"
 	public static String getOrderId() {

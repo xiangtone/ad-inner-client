@@ -62,7 +62,7 @@ public class Form05_6_2_Consume extends HttpServlet {
 		contentData.put("txnSubType", "01");           		 	//交易子类 01：消费
 		contentData.put("bizType", "000201");          		 	//填写000201
 		contentData.put("channelType", "07");          		 	//渠道类型
-
+		
 		/***商户接入参数***/
 		//contentData.put("merId", merId);   		 				//商户号码，请改成自己申请的商户号或者open上注册得来的777商户号测试
 		contentData.put("merId", "898440379930020");   		 				//商户号码，请改成自己申请的商户号或者open上注册得来的777商户号测试

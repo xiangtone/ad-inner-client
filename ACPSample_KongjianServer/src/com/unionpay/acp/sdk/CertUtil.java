@@ -255,7 +255,6 @@ public class CertUtil {
 			return null;
 		}
 	}
-	
 
 	/**
 	 * 通过传入证书绝对路径和证书密码获取所对应的签名证书私钥

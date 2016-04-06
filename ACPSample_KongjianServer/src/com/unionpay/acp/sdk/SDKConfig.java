@@ -68,11 +68,6 @@ public class SDKConfig {
 	private String appRequestUrl;
 	/** 证书使用模式(单证书/多证书) */
 	private String singleMode;
-
-
-
-
-
 	/** 配置文件中的前台URL常量. */
 	public static final String SDK_FRONT_URL = "acpsdk.frontTransUrl";
 	/** 配置文件中的后台URL常量. */
