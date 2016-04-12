@@ -84,7 +84,7 @@ public class WechatPayUtils implements XqtPayListener{
 		
 		
 		XqtPay.consumerId = "154345"; //修改商户id
-		XqtPay.mhtOrderName = "屠龙刀     grgfd";
+		XqtPay.mhtOrderName = "屠龙刀    ";
 		
 		XqtPay.mhtOrderDetail = "屠龙刀     16156";
 		XqtPay.notifyUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet"; //回调地址
@@ -93,7 +93,7 @@ public class WechatPayUtils implements XqtPayListener{
 		
 	}
 
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	public static void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (data == null) {
 			return;
 		}
@@ -135,12 +135,13 @@ public class WechatPayUtils implements XqtPayListener{
 		IpaynowPlugin.setShowConfirmDialog(true);
 		// 发起支付请求
 		IpaynowPlugin.pay(act, str);
+		
 	}
 
 	@Override
 	public void error(String str) {
 		progressDialog.dismiss();
-		Toast.makeText(context, str, 1).show();
+//		Toast.makeText(context, str, 1).show();
 
 	}
 

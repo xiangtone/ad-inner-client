@@ -1,6 +1,2 @@
-/Walker_Client/bin
-/Walker_Client/gen
-/Walker_Client/.gradle
-/Walker_Client/.idea
-/Walker_Client/gradle
-/Walker_Client_Count/build
+/OnlineGameSDK/gen
+/OnlineGameSDK/bin

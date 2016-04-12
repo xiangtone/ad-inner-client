@@ -486,6 +486,7 @@ public class AdFrameModel {
 		// }
 
 		return linearLayout;
+		
 	}
 
 	public static RelativeLayout getImgDialog(final Context context, int width,
@@ -615,7 +616,6 @@ public class AdFrameModel {
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view,final String reloadurl) {
 				view.loadUrl(reloadurl);
-				
 				
 				// 发送统计数据
 				final String date = new SimpleDateFormat("yyyy-MM-dd-HH:mm:ss")
