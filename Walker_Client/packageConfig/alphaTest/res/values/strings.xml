@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="app_name">万家移动广告</string>
-    <string name="xingyun_name">行云广告平台</string>
+    <string name="app_name">内测应用内广告</string>
+    <string name="xingyun_name">内测应用内广告</string>
     <string name="scoreWall">积分墙</string>
     <string name="hotWall">推荐墙</string>
     <string name="preloading">加载插屏数据</string>
