@@ -14,11 +14,13 @@ import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.alipay.sdk.pay.demo.PayResult;
 import com.alipay.sdk.pay.demo.SignUtils;
+import com.onlinegame.dao.PayConstants;
 import com.onlinegame.dao.ProductBean;
 
 public class AlipayUtils {
@@ -29,19 +31,22 @@ public class AlipayUtils {
 	private static String price;
 	private static AlipayUtils alipayUtils = null;
 	private Activity act;
+	private ProductBean productBean = null;
 	
-	public AlipayUtils(Context context,Activity act) {
+	private String CHANNEL= ""; 
+	private String APPKEY = "";
+	private String xx_notifyData = ""; //自定义参数
+	
+	public AlipayUtils(Context context,Activity act,ProductBean productBean ) {
 		this.context = context;
 		this.act = act ;
+		this.productBean = productBean;
 	}
 	
-	public static AlipayUtils getInstances(Context context,Activity act){
-		name = ProductBean.getInstance().getProduct_subject();
-		describe = ProductBean.getInstance().getProduct_describe();
-		price = ProductBean.getInstance().getProduct_price();
+	public static AlipayUtils getInstances(Context context,Activity act,ProductBean productBean){
 		
 		if(alipayUtils == null){
-			alipayUtils = new AlipayUtils(context,act);
+			alipayUtils = new AlipayUtils(context,act,productBean);
 		}
 		return alipayUtils;
 	}
@@ -62,6 +67,7 @@ public class AlipayUtils {
 	private static final int SDK_CHECK_FLAG = 2;
 
 	private Handler mHandler = new Handler() {
+		
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case SDK_PAY_FLAG: {
@@ -109,6 +115,7 @@ public class AlipayUtils {
 	 * 
 	 */
 	public void pay() {
+		
 		if (TextUtils.isEmpty(PARTNER) || TextUtils.isEmpty(RSA_PRIVATE)
 				|| TextUtils.isEmpty(SELLER)) {
 			new AlertDialog.Builder(context)
@@ -124,6 +131,18 @@ public class AlipayUtils {
 							}).show();
 			return;
 		}
+		
+		name = ProductBean.getInstance().getProduct_subject();
+		describe = ProductBean.getInstance().getProduct_describe();
+		
+		xx_notifyData = "{\"channel\":\""+ExtraData.getChannel(context)+"\",\"appkey\":\""+ExtraData.getAppkey(context)+"\",\"platform\":\"alipay\"}";
+		
+		Log.e("xxnotifydata = ", xx_notifyData);
+		
+		//价格单位转换成分
+		String alipayPrice = ProductBean.getInstance().getProduct_price();
+		price = String.format("%.2f",((Float.parseFloat(alipayPrice)) / 100));
+		
 		// 订单
 		String orderInfo = getOrderInfo(name, describe, price);
 
@@ -158,6 +177,7 @@ public class AlipayUtils {
 		// 必须异步调用
 		Thread payThread = new Thread(payRunnable);
 		payThread.start();
+		
 	}
 
 	/**
@@ -222,7 +242,7 @@ public class AlipayUtils {
 		orderInfo += "&total_fee=" + "\"" + price + "\"";
 
 		// 服务器异步通知页面路径
-		orderInfo += "&notify_url=" + "\"" + "http://thirdpay-webhook.n8wan.com:29141/testSend"
+		orderInfo += "&notify_url=" + "\"" + "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet?xx_notifyData="+xx_notifyData
 				+ "\"";
 
 		// 服务接口名称， 固定值

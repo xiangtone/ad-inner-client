@@ -47,3 +47,7 @@ captures/
 *.jks
 /Walker_Client/packageConfig/alphaHui
 /Walker_Client/*.iml
+
+/OnlineGameSDK/gen
+/OnlineGameSDK/bin
+

@@ -40,9 +40,8 @@ public class DemoBase {
 	//public static String backUrl = "http://222.222.222.222:8080/ACPSample_KongjianServer/BackRcvResponse";//受理方和发卡方自选填写的域[O]--后台通知地址
 //	public static String backUrl = "http://unionpay-server.n8wan.com:29141/";//受理方和发卡方自选填写的域[O]--后台通知地址
 	
-	//已修改
-//	public static String backUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";//受理方和发卡方自选填写的域[O]--后台通知地址
-	public static String backUrl = "http://thirdpay-webhook.n8wan.com:29141/UnionpayCountServlet";//受理方和发卡方自选填写的域[O]--后台通知地址
+	//支付回调地址
+	public static String backUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";//受理方和发卡方自选填写的域[O]--后台通知地址
 	//public static String backUrl = "http://192.168.0.101:8080/thirdpay-webhook/UnionpayCountServlet";//受理方和发卡方自选填写的域[O]--后台通知地址
 
 	// 商户发送交易时间 格式:YYYYMMDDhhmmss
