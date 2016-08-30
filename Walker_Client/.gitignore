@@ -39,3 +39,9 @@ captures/
 *.jks
 
 hs_err_pid*
+/.idea
+/.gradle
+/gen
+/bin
+/build
+/gradle
